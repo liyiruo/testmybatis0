@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+    </properties>
+
+    <settings>
+        <setting name="logImpl" value="LOG4J" />
+    </settings>
+
+
+    <typeAliases>
+        <typeAlias type="com.testmybatis.pojo.User" alias="User"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--四中引入被扫描的包的方法-->
+<!--  <package name="com.testmybatis.mapper"/>-->
+<!--<mapper resource="com/testmybatis/mapper/Mapper.xml"/>-->
+<!--<mapper class="com.testmybatis.mapper.Mapper"/>-->
+         <mapper url="file:///D:/testmybatis/src/main/java/com/testmybatis/mapper/Mapper.xml"/>
+    </mappers>
+
+</configuration>

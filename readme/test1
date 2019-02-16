@@ -1,0 +1,30 @@
+String resource = "mybatis-config.xml";
+
+//两种创建sessionFactory的方式
+   //一
+InputStream is = Test1.class.getClassLoader().getResourceAsStream(resource);
+SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
+   //二
+Reader reader = Resources.getResourceAsReader(resource);
+SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+
+SqlSession session = sessionFactory.openSession();
+
+   //没有接口的时候
+String statement = "com.testmybatis.mapper.Mapper.selectUser";
+User user = session.selectOne(statement, 1);
+
+   //有接口的时候
+Mapper mapper=session.getMapper(Mapper.class);
+User user = mapper.selectUser(1);
+
+System.out.println(user);
+    　
+
+    　　
+
+
+
+
+
+
